@@ -1,0 +1,9 @@
+.site-layout-background {
+  background: #fff;
+}
+
+.site-layout-background img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
