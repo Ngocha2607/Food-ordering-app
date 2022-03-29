@@ -1,0 +1,25 @@
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action {
+  margin-left: 2rem;
+  text-align: center;
+}
+
+.action button {
+  width: 20px;
+  cursor: pointer;
+  background-color: #8a2b06;
+  border: none;
+  color: white;
+  border-radius: 50%;
+}
+
+.action button:hover,
+.action button:active {
+  background-color: #641e03;
+  border-color: #641e03;
+}

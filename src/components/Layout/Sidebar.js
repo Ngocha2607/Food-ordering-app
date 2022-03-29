@@ -19,7 +19,11 @@ const Sidebar = (props) => (
       console.log(collapsed, type);
     }}
   >
-    <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+    <Menu
+      theme="dark"
+      mode="inline"
+      defaultSelectedKeys={["1"]}
+    >
       <Menu.Item key="1" icon={<UserOutlined />}>
         Home
       </Menu.Item>
