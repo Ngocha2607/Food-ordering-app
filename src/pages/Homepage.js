@@ -8,7 +8,7 @@ import Sidebar from "../components/Layout/Sidebar";
 import Cart from "../components/Cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../components/UI/Notification";
-import { sendCartData } from "../store/reducers/cart-slice";
+import { sendCartData, fetchCartData } from "../store/reducers/cart-actions";
 
 let isInitial = true;
 
@@ -19,11 +19,17 @@ const Homepage = () => {
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (
