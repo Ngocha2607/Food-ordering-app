@@ -2,44 +2,44 @@ import React, { useRef, useState } from "react";
 import classes from "./Checkout.module.css";
 
 const isEmpty = (value) => value.trim() === "";
-const isFiveChars = (value) => value.trim().length === 5;
+const isPhoneNumber = (value) => value.trim().length === 10;
 
 const Checkout = (props) => {
   const [formInputValidity, setFormInputValidity] = useState({
     name: true,
-    street: true,
-    postal: true,
-    city: true,
+    address: true,
+    phone: true,
+    note: true,
   });
   const inputNameRef = useRef();
-  const inputStreetRef = useRef();
-  const inputPostalRef = useRef();
-  const inputCityRef = useRef();
+  const inputAddressRef = useRef();
+  const inputPhoneRef = useRef();
+  const inputNoteRef = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     const enteredName = inputNameRef.current.value;
-    const enteredStreet = inputStreetRef.current.value;
-    const enteredPostal = inputPostalRef.current.value;
-    const enteredCity = inputCityRef.current.value;
+    const enteredAddress = inputAddressRef.current.value;
+    const enteredPhone = inputPhoneRef.current.value;
+    const enteredNote = inputNoteRef.current.value;
 
     const enteredNameIsValue = !isEmpty(enteredName);
-    const enteredStreetIsValue = !isEmpty(enteredStreet);
-    const enteredCityIsValue = !isEmpty(enteredCity);
-    const enteredPostalIsValue = isFiveChars(enteredPostal);
+    const enteredAddressIsValue = !isEmpty(enteredAddress);
+    const enteredNoteIsValue = !isEmpty(enteredNote);
+    const enteredPhoneIsValue = isPhoneNumber(enteredPhone);
 
     setFormInputValidity({
       name: enteredNameIsValue,
-      street: enteredStreetIsValue,
-      postal: enteredPostalIsValue,
-      city: enteredCityIsValue,
+      address: enteredAddressIsValue,
+      phone: enteredPhoneIsValue,
+      note: enteredNoteIsValue,
     });
     const formIsValid =
       enteredNameIsValue &&
-      enteredCityIsValue &&
-      enteredPostalIsValue &&
-      enteredStreetIsValue;
+      enteredNoteIsValue &&
+      enteredPhoneIsValue &&
+      enteredAddressIsValue;
 
     if (!formIsValid) {
       return;
@@ -47,23 +47,23 @@ const Checkout = (props) => {
 
     props.onSubmit({
         name: enteredName,
-        street: enteredStreet,
-        postal: enteredPostal,
-        city: enteredCity
+        address: enteredAddress,
+        phone: enteredPhone,
+        note: enteredNote
     })
   };
 
   const nameControlClasses = `${classes.control} ${
     formInputValidity.name ? "" : classes.invalid
   }`
-  const streetControlClasses = `${classes.control} ${
-    formInputValidity.street ? "" : classes.invalid
+  const addressControlClasses = `${classes.control} ${
+    formInputValidity.address ? "" : classes.invalid
   }`
-  const postalControlClasses = `${classes.control} ${
-    formInputValidity.postal ? "" : classes.invalid
+  const phoneControlClasses = `${classes.control} ${
+    formInputValidity.phone ? "" : classes.invalid
   }`
-  const cityControlClasses = `${classes.control} ${
-    formInputValidity.city ? "" : classes.invalid
+  const noteControlClasses = `${classes.control} ${
+    formInputValidity.note ? "" : classes.invalid
   }`
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -74,20 +74,20 @@ const Checkout = (props) => {
         <input type="text" id="name" ref={inputNameRef} />
         {!formInputValidity.name && <p>Please enter a valid name!</p>}
       </div>
-      <div className={streetControlClasses}>
-        <label htmlFor="street">Street</label>
-        <input type="text" id="street" ref={inputStreetRef} />
-        {!formInputValidity.name && <p>Please enter a valid street!</p>}
+      <div className={addressControlClasses}>
+        <label htmlFor="address">Address</label>
+        <input type="text" id="address" ref={inputAddressRef} />
+        {!formInputValidity.address && <p>Please enter a valid address!</p>}
       </div>
-      <div className={postalControlClasses}>
-        <label htmlFor="postal">Postal Code</label>
-        <input type="text" id="postal" ref={inputPostalRef} />
-        {!formInputValidity.name && <p>Please enter a valid postal!</p>}
+      <div className={phoneControlClasses}>
+        <label htmlFor="phone">Phone Number</label>
+        <input type="text" id="phone" ref={inputPhoneRef} />
+        {!formInputValidity.phone && <p>Please enter a valid phone number!</p>}
       </div>
-      <div className={cityControlClasses}>
-        <label htmlFor="city">City</label>
-        <input type="text" id="city" ref={inputCityRef} />
-        {!formInputValidity.name && <p>Please enter a valid city!</p>}
+      <div className={noteControlClasses}>
+        <label htmlFor="notation">Notation</label>
+        <textarea id="notation" maxlength='100' ref={inputNoteRef} />
+        {!formInputValidity.note && <p>Please enter a valid notation!</p>}
       </div>
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>

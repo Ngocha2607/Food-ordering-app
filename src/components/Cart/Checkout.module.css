@@ -22,6 +22,14 @@
   max-width: 100%;
 }
 
+.control textarea {
+  font: inherit;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 20rem;
+  max-width: 100%;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -58,7 +66,7 @@
   color: #ca3e51;
 }
 
-.invalid input {
+.invalid input, .invalid textarea {
   border-color: #aa0b20;
   background-color: #ffeff1;
 }

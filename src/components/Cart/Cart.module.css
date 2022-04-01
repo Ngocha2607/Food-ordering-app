@@ -42,3 +42,17 @@
   background-color: #8a2b06;
   color: white;
 }
+
+.sending,
+.success {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.sending {
+  color: #4141dd;
+}
+
+.success {
+  color: #05ca50;
+}
