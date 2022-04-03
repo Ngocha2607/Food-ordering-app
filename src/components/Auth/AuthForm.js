@@ -57,7 +57,7 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        dispatch(login( localStorage.getItem('token') ?  localStorage.getItem('token') : data.idToken));
+        dispatch(login(data.idToken));
         navigate("/");
       })
       .catch((err) => {

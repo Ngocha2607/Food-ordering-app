@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: '',
-  isLoggedIn: false,
+  isLoggedIn: localStorage.getItem('token'),
 };
 
 const userSlice = createSlice({
@@ -14,7 +14,7 @@ const userSlice = createSlice({
       state.isLoggedIn = true;
       localStorage.setItem("token", state.token);
     },
-
+    
     logout: (state) => {
       state.token = "";
       state.isLoggedIn = false;
