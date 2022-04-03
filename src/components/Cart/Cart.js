@@ -95,7 +95,7 @@ const Cart = (props) => {
   );
 
   return (
-    <Modal>
+    <Modal onCancel={closeCartItem}>
       {!isSubmitting && !didSubmit && cartModalContent}
       {isSubmitting && isSubmittingModalContent}
       {!isSubmitting && didSubmit && didSubmitModalContent}
